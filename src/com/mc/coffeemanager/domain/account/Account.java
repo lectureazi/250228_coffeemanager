@@ -1,12 +1,29 @@
 package com.mc.coffeemanager.domain.account;
 
+import com.mc.coffeemanager.infra.error.NotInitialized;
+
 public class Account {
 
 	private int balance;
 	private int sales;
 	private int expenses;
+	
+	public static Account INSTANCE;
+	
+	public static Account getInstance() {
+		if(INSTANCE == null) throw new NotInitialized("Account is not initialized");
+		return INSTANCE;
+	}
+	
+	public static Account getInstance(int balance) {
+		if(INSTANCE == null) {
+			INSTANCE = new Account(balance);
+		}
+		 
+		return INSTANCE;
+	}
 
-	public Account(int balance) {
+	private Account(int balance) {
 		super();
 		this.balance = balance;
 	}
@@ -33,6 +50,11 @@ public class Account {
 		balance -= expenses;
 		this.expenses += expenses;
 		return true;
+	}
+
+	public void registSales(int sales) {
+		balance += sales;
+		this.sales += sales;
 	}
 	
 	

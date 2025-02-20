@@ -1,5 +1,6 @@
 package com.mc.coffeemanager.domain.payment;
 
+import com.mc.coffeemanager.domain.account.Account;
 import com.mc.coffeemanager.domain.order.Order;
 
 public class Payment {
@@ -22,8 +23,8 @@ public class Payment {
 	}
 
 	public void proceed() {
-		// TODO Auto-generated method stub
-		
+		Account account = Account.getInstance();
+		account.registSales(paymentPrice);
 	}
 
 }
