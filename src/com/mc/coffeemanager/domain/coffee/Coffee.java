@@ -68,5 +68,9 @@ public class Coffee {
 	public void addStock(int cnt) {
 		stock += cnt;
 	}
+	
+	public boolean isSeason() {
+		return true;
+	}
 
 }

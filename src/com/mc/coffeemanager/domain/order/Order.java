@@ -1,6 +1,7 @@
 package com.mc.coffeemanager.domain.order;
 
 import java.time.LocalDateTime;
+
 import com.mc.coffeemanager.domain.coffee.Coffee;
 import com.mc.coffeemanager.domain.order.code.OrderStatus;
 
@@ -20,6 +21,11 @@ public class Order {
 		
 		if(coffee.getStock() < orderCnt) {
 			order.status = OrderStatus.FAIL_SOLDOUT;
+			return order;
+		}
+		
+		if(!coffee.isSeason()) {
+			order.status = OrderStatus.FAIL_SEASON;
 			return order;
 		}
 		
